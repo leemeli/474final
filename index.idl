@@ -1,0 +1,65 @@
+[meta title:"Osmosis" description:"A learning explorable explanation of osmosis" /]
+
+[Header
+  title:"Osmosis"
+  subtitle:"Movement of solvent molecules through a semi-permeable membrane"
+  author:"Michael Lew, Alyxis Burks, Melody Lee"
+/]
+
+[var name:"animation" value:0 /]
+
+[section]
+
+[Waypoint]
+Osmosis is the shifting of solvent molecules through a semi-permeable membrane from a higher solute concentration to a lower solute concentration until a state of equilibrium is reached.
+
+A solvent is a substance in which a solute can be dissolved. For the purpose of this explorable explanation, we will largely use water as an example of a solvent and salt as an example of a solute. 
+
+Semi-permeable membranes are found in animal cells. It only allows certain molecules in and out of the cell. While water can go through a semi-permeable membrane, proteins and salt cannot. 
+
+Osmolarity is defined by the concentration of all solute in a solution. Three terms are often used to compare the osmolarity of a cell to the osmolarity of the extracellular fluid - **isotonic, hypotonic, and hypertonic**.
+[/Waypoint]
+
+[Waypoint onEnteredView:`animation=0`]
+##Isotonic
+
+Under ideal circumstances, the osmolarity inside an animal cell is the same as its extracellular fluids. We consider this to be **isotonic**, in which there is no net movement of water in or out of the cell. 
+
+*Iso* means "equal" in Greek. The extracellular fluid osmolarity is equal to the cell osmolarity. 
+
+An isotonic solution is commonly used in nursing to **increase extracellular fluid** due to blood loss, dehydration, or surgery. Examples of isotonic solutions are 0.9% saline and lactated ringer's. Many medical prescriptions are purposefully isotonic to our cells, such as nasal sprays and eye drops.
+
+[button onClick:`animation=0`]Isotonic[/button]
+[/Waypoint]
+
+[Waypoint onEnteredView:`animation=1`]
+##Hypotonic
+
+When the osmolarity outside of the cell is lower than in the cell, the extracellular fluid is said to be **hypotonic** to the cell. 
+
+*Hypo* means "under" in Greek. The extracellular fluid is under concentrated in comparison to the cell's fluids. 
+
+The cells absorb more water, causing the cell to grow. This may occur if a large amount of water is consumed by the organism, or if the kidney fails to function properly. In extreme situations, cells can rupture and die from absorbing too much water. 
+
+A hypotonic solution is commonly used in nursing when a person's cells are dehydrated and **fluids need to return into the cell**. An example of a hypotonic solution is >0.45% saline. 
+[button onClick:`animation=1`]Hypotonic[/button]
+[/Waypoint]
+
+[Waypoint onEnteredView:`animation=2`]
+##Hypertonic
+
+When the osmolarity outside of the cell is higher than in the cell, the extracellular fluid is said to be **hypertonic** to the cell. 
+
+*Hyper* means "over" in Greek. The extracellular fluid is over concentrated in comparison to the cell's fluids. 
+
+Water in the cell will flow out of the semi-permeable membrane and the cells will shrink until equilibrium is reached. If the cell shrinks too much, the cytoplasm becomes dense and may die. This occurs due to dehydration or unusually high solute concentrations in the extracellular fluid. 
+
+A hypertonic solution is used in nursing when **there is fluid overload in a person's cells**. Some examples of hypertonic solutions are 3%-5% saline and dextrose.
+[button onClick:`animation=2`]Hypertonic[/button]
+[/Waypoint]
+
+[/section]
+
+[Fixed]
+  [CustomD3Component value:animation /]
+[/Fixed] 
