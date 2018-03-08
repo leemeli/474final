@@ -10,7 +10,7 @@
 
 [section]
 
-[Waypoint]
+[Waypoint  onExitView:`animation=3`]
 Osmosis is the shifting of solvent molecules through a semi-permeable membrane from a higher solute concentration to a lower solute concentration until a state of equilibrium is reached.
 
 A solvent is a substance in which a solute can be dissolved. For the purpose of this explorable explanation, we will largely use water as an example of a solvent and salt as an example of a solute. 

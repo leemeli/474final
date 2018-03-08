@@ -10,13 +10,13 @@ class CustomD3Component extends D3Component {
     super(props);
 
     this.state = {
-      'animation': 0 // isotonic = 0, hypertonic = 2, hypotonic = 1, stopanimation = 3
-    };
+      animation: 0
+    }
 
     this.shootHyper = this.shootHyper.bind(this);
     this.shootHypo = this.shootHypo.bind(this);
     this.shootBits = this.shootBits.bind(this);
-    this.pulse = this.pulse.bind(this);
+    //this.pulse = this.pulse.bind(this);
     this.update = this.update.bind(this);
     this.disappear = this.disappear.bind(this);
     this.shootBitsHyper = this.shootBitsHyper.bind(this);
@@ -36,6 +36,9 @@ class CustomD3Component extends D3Component {
     //     .attr('cy', Math.random() * size);
 
     const svg = this.svg = d3.select(node).append('svg');
+    
+    svg.on("mouseover", function() { svg.style("background-color", 'blue'); })
+      .on("mouseout", function(){ svg.style("background-color", 'lightblue'); });
 
     this.blob = svg.append('ellipse')
       .attr('cx', 200)
@@ -51,7 +54,7 @@ class CustomD3Component extends D3Component {
     this.bits;
   }
 
-  pulse() {
+  /*pulse() {
     console.log("pulse");
     this.blob
       .transition().duration(800)
@@ -61,7 +64,7 @@ class CustomD3Component extends D3Component {
       .attr('rx', '70')
       .attr('ry', '45')
       .on('end', this.pulse);
-  }
+  } */
 
   shootBitsHyper(x, y, target) {
     let blobX = Math.random(400);
@@ -168,10 +171,11 @@ class CustomD3Component extends D3Component {
         dot.remove();
         clearInterval(bean);
         this.shootCount++;
-        console.log(this.blob.attr('rx'));
-        console.log(this.blob.attr('ry'));
-        this.blob.attr('rx', parseInt(this.blob.attr('rx')) + valueChange)
-          .attr('ry', parseInt(this.blob.attr('ry')) + valueChange);
+        if ((this.state.animation == 1 && valueChange > 0) || 
+        (this.state.animation == 2 && valueChange < 0)) {
+          this.blob.attr('rx', parseInt(this.blob.attr('rx')) + valueChange)
+            .attr('ry', parseInt(this.blob.attr('ry')) + valueChange);
+        }
       }
     }, 10
     );
@@ -198,13 +202,16 @@ class CustomD3Component extends D3Component {
     this.svg.selectAll('circle').remove();
     clearInterval(this.shoot);
     this.blob.attr('rx', 80)
-          .attr('ry', 55);
+          .attr('ry', 55)
+          .attr('cx', 200)
+          .attr('cy', 200);
   }
 
   // Hypotonic: entering circle
   // Hypertonic: leaving circle
 
   update(props) {
+    this.setState({animation: props.value});
     if (props.value == 1) {
       this.stopAnimation();
       this.shootHypo();
