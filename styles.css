@@ -8,7 +8,7 @@ body {
 svg {
     width: 400px;
     height: 400px;
-    background-color: lightblue;
+    /*background-color: lightblue; */
   }
 
 @media screen and (max-width:1029px) {

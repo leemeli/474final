@@ -37,19 +37,46 @@ class CustomD3Component extends D3Component {
 
     const svg = this.svg = d3.select(node).append('svg');
     
-    svg.on("mouseover", function() { svg.style("background-color", 'blue'); })
-      .on("mouseout", function(){ svg.style("background-color", 'lightblue'); });
+    /*svg.on("mouseover", function() { svg.style("background-color", 'blue'); })
+      .on("mouseout", function(){ svg.style("background-color", 'lightblue'); }); */
 
-    this.blob = svg.append('ellipse')
+    const g = svg.append('g');
+
+    const backrect = g.append('rect')
+      .attr('width', 400)
+      .attr('height', 400)
+      .attr('fill', 'lightblue')
+      .on("mouseover", function() { extracellular.style('visibility', 'visible'); } )
+      .on("mouseout", function(){ extracellular.style('visibility', 'hidden');} );
+
+    const extracellular = g.append('text')
+      .attr('x', 15)
+      .attr('y', 375)
+      .attr('dy', '.35em')
+      .text("Extracellular Fluid")
+      .style('fill', 'blue')
+      .style('visibility', 'hidden');
+
+    this.blob = g.append('ellipse')
       .attr('cx', 200)
       .attr('cy', 200)
       .style('fill', 'red')
       .style('stroke', 'darkred')
       .style('stroke-width', '3')
       .attr('rx', 80)
-      .attr('ry', 55);
+      .attr('ry', 55)
+      .on("mouseover", function() { bloodcell.style('visibility', 'visible'); } )
+      .on("mouseout", function(){ bloodcell.style('visibility', 'hidden');} );
 
-    this.path = svg.append('path');
+    const bloodcell = g.append('text')
+      .attr('x', 135)
+      .attr('y', 195)
+      .attr('dy', '.35em')
+      .style('fill', 'darkred')
+      .text("Red Blood Cell")
+      .style('visibility', 'hidden');
+
+    this.path = g.append('path');
 
     this.bits;
   }
