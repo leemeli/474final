@@ -13,7 +13,7 @@
 [Waypoint]
 Osmosis is the shifting of solvent molecules through a semi-permeable membrane from a higher solute concentration to a lower solute concentration until a state of equilibrium is reached.
 
-A solvent is a substance in which a solute can be dissolved. For the purpose of this explorable explanation, we will largely use water as an example of a solvent and salt as an example of a solute. 
+A solvent is a substance in which a solute can be dissolved. For instance, water is a solvent and salt is a solute.  
 
 Semi-permeable membranes are found in animal cells. It only allows certain molecules in and out of the cell. While water can go through a semi-permeable membrane, proteins and salt cannot. 
 
@@ -53,6 +53,49 @@ When the osmolarity outside of the cell is higher than in the cell, the extracel
 Water in the cell will flow out of the semi-permeable membrane and the cells will shrink until equilibrium is reached. If the cell shrinks too much, the cytoplasm becomes dense and may die. This occurs due to dehydration or unusually high solute concentrations in the extracellular fluid. 
 
 A hypertonic solution is used in nursing when **there is fluid overload in a person's cells**. Some examples of hypertonic solutions are 3%-5% saline and dextrose.
+[/Waypoint]
+
+[/section]
+
+[section]
+
+[Waypoint onEnterViewFully:`animation=1` onExitView:`animation=3`]
+#Content Review
+##Question 1
+
+When the osmolarity outside of the cell is lower than in the cell, the extracellular fluid is _____________ to the cell:
+
+[var name:"answer1" value:"---" /]
+[Select value:answer1 options:`["---", "isotonic", "hypotonic", "hypertonic"]`  /]
+
+[ContentReview correctanswer:"hypotonic" givenanswer:answer1 /]
+
+[/Waypoint]
+
+[Waypoint onEnterViewFully:`animation=0` onExitView:`animation=3`]
+
+##Question 2
+
+When the osmolarity outside of the cell is equal to inside the cell, the extracellular fluid is _____________ to the cell:
+
+[var name:"answer2" value:"---" /]
+[Select value:answer2 options:`["---", "isotonic", "hypotonic", "hypertonic"]`  /]
+
+[ContentReview correctanswer:"isotonic" givenanswer:answer2 /]
+
+[/Waypoint]
+
+[Waypoint onEnterViewFully:`animation=2` onExitView:`animation=3`]
+
+##Question 3
+
+When the osmolarity outside of the cell is lower than in the cell, the extracellular fluid is _____________ to the cell:
+
+[var name:"answer3" value:"---" /]
+[Select value:answer3 options:`["---", "isotonic", "hypotonic", "hypertonic"]`  /]
+
+[ContentReview correctanswer:"hypertonic" givenanswer:answer3 /]
+
 [/Waypoint]
 
 [/section]
