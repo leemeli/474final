@@ -10,7 +10,7 @@
 
 [section]
 
-[Waypoint]
+[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
 Osmosis is the shifting of solvent molecules through a semi-permeable membrane from a higher solute concentration to a lower solute concentration until a state of equilibrium is reached.
 
 A solvent is a substance in which a solute can be dissolved. For instance, water is a solvent and salt is a solute.  
@@ -18,17 +18,6 @@ A solvent is a substance in which a solute can be dissolved. For instance, water
 Semi-permeable membranes are found in animal cells. It only allows certain molecules in and out of the cell. While water can go through a semi-permeable membrane, proteins and salt cannot. 
 
 Osmolarity is defined by the concentration of all solute in a solution. Three terms are often used to compare the osmolarity of a cell to the osmolarity of the extracellular fluid - **isotonic, hypotonic, and hypertonic**.
-[/Waypoint]
-
-[Waypoint onEnterViewFully:`animation=0` onExitView:`animation=3`]
-##Isotonic
-
-Under ideal circumstances, the osmolarity inside an animal cell is the same as its extracellular fluids. We consider this to be **isotonic**, in which there is no net movement of water in or out of the cell. 
-
-*Iso* means "equal" in Greek. The extracellular fluid osmolarity is equal to the cell osmolarity. 
-
-An isotonic solution is commonly used in nursing to **increase extracellular fluid** due to blood loss, dehydration, or surgery. Examples of isotonic solutions are 0.9% saline and lactated ringer's. Many medical prescriptions are purposefully isotonic to our cells, such as nasal sprays and eye drops.
-
 [/Waypoint]
 
 [Waypoint onEnterViewFully:`animation=1` onExitView:`animation=3`]
@@ -53,6 +42,17 @@ When the osmolarity outside of the cell is higher than in the cell, the extracel
 Water in the cell will flow out of the semi-permeable membrane and the cells will shrink until equilibrium is reached. If the cell shrinks too much, the cytoplasm becomes dense and may die. This occurs due to dehydration or unusually high solute concentrations in the extracellular fluid. 
 
 A hypertonic solution is used in nursing when **there is fluid overload in a person's cells**. Some examples of hypertonic solutions are 3%-5% saline and dextrose.
+[/Waypoint]
+
+[Waypoint onEnterViewFully:`animation=0` onExitView:`animation=3`]
+##Isotonic
+
+Under ideal circumstances, the osmolarity inside an animal cell is the same as its extracellular fluids. We consider this to be **isotonic**, in which there is no net movement of water in or out of the cell. 
+
+*Iso* means "equal" in Greek. The extracellular fluid osmolarity is equal to the cell osmolarity. 
+
+An isotonic solution is commonly used in nursing to **increase extracellular fluid** due to blood loss, dehydration, or surgery. Examples of isotonic solutions are 0.9% saline and lactated ringer's. Many medical prescriptions are purposefully isotonic to our cells, such as nasal sprays and eye drops.
+
 [/Waypoint]
 
 [/section]
