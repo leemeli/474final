@@ -59,7 +59,7 @@ An isotonic solution is commonly used in nursing to **increase extracellular flu
 
 [section]
 
-[Waypoint onEnterViewFully:`animation=1` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
 #Content Review
 ##Question 1
 
@@ -72,7 +72,7 @@ When the osmolarity outside of the cell is lower than in the cell, the extracell
 
 [/Waypoint]
 
-[Waypoint onEnterViewFully:`animation=0` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
 
 ##Question 2
 
@@ -85,7 +85,7 @@ When the osmolarity outside of the cell is equal to inside the cell, the extrace
 
 [/Waypoint]
 
-[Waypoint onEnterViewFully:`animation=2` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
 
 ##Question 3
 
@@ -98,6 +98,29 @@ When the osmolarity outside of the cell is lower than in the cell, the extracell
 
 [/Waypoint]
 
+[/section]
+
+[section]
+[Waypoint onEnterViewFully:`animation=5` onExitView:`animation=3`]
+
+###Osmosis Game
+
+In this game, you are a doctor.
+
+You are shown a patient's blood cell that is either too big, too small, or normal sized.
+
+Based on the size of the cell, you must add a solution in order to make the blood cell normal sized, and must do so within a time limit:
+* If the blood cell is "too small", then a Hypotonic solution should be used.
+* If the blood cell is "too large", then a Hypertonic solution should be used.
+* If the blood cell is "just right", then an Isotonic solution should be used.
+
+Once you have made the blood cell normal size, you will gain score, and a new cell will be shown.
+
+But if you run out of time or accidentally use a Hypotonic solution on a large blood cell, or a Hypertonic solution on a small blood cell, it's game over.
+
+Are you ready? Press "Play Game".
+
+[/Waypoint]
 [/section]
 
 [Fixed]

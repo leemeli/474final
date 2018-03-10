@@ -2,6 +2,7 @@ const React = require('react');
 const D3Component = require('idyll-d3-component');
 const d3 = require('d3');
 
+
 const size = 600;
 
 class ContentReview extends D3Component {

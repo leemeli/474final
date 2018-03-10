@@ -2,7 +2,6 @@ const React = require('react');
 const D3Component = require('idyll-d3-component');
 const d3 = require('d3');
 
-
 class CustomD3Component extends D3Component {
 
 
@@ -10,7 +9,8 @@ class CustomD3Component extends D3Component {
     super(props);
 
     this.state = {
-      animation: 0
+      animation: 0,
+      state: 2
     }
 
     // Main: Hyper / Hypo / Iso
@@ -30,6 +30,15 @@ class CustomD3Component extends D3Component {
     this.setExtracellularText = this.setExtracellularText.bind(this);
     this.bloodSizeChange = this.bloodSizeChange.bind(this);
     this.setArrowsBackground = this.setArrowsBackground.bind(this);
+
+    this.playGame = this.playGame.bind(this);
+    this.startGame = this.startGame.bind(this);
+
+    //this.gameLoop = this.gameLoop.bind(this);
+    this.stopGame = this.stopGame.bind(this);
+    this.rotate = this.rotate.bind(this);
+
+    this.addSolution = this.addSolution.bind(this);
   }
 
   initialize(node, props) {
@@ -40,7 +49,7 @@ class CustomD3Component extends D3Component {
     /*svg.on("mouseover", function() { svg.style("background-color", 'blue'); })
       .on("mouseout", function(){ svg.style("background-color", 'lightblue'); }); */
 
-    const g = svg.append('g');
+    const g = svg.append('g').attr('id', 'g');
 
 
 
@@ -83,6 +92,7 @@ class CustomD3Component extends D3Component {
     const bloodcell = g.append('text')
       .attr('x', 147)
       .attr('y', 200)
+      .attr('id', 'redBloodCell')
       .attr('dy', '.35em')
       .style('fill', 'white')
       .style('font-size', '12pt')
@@ -90,6 +100,93 @@ class CustomD3Component extends D3Component {
     //.style('visibility', 'hidden');
 
     this.path = g.append('path');
+
+    let that = this;
+
+    // Game controls
+    // Add start button
+    const startbutton = g.append('rect')
+      .attr('width', 370)
+      .attr('height', 120)
+      .attr('x', 15)
+      .attr('y', 140)
+      .attr('class', 'game game1')
+      .style('rx', 5)
+      .style('ry', 5)
+      .style('cursor', 'pointer')
+      .attr('stroke', 'black')
+      .attr('fill', 'beige')
+      .style('display', 'none')
+      .on('click', function () { that.startGame(); })
+
+    g.append('text')
+      .attr('id', 'startButton')
+      .attr('x', 130)
+      .attr('y', 195)
+      .attr('dy', '.5em')
+      .style('font-size', '24pt')
+      .style('pointer-events', 'none')
+      .text('Play Game')
+      .attr('class', 'game game1')
+      .style('fill', 'blue')
+      .style('display', 'none');
+
+    // Game started
+    g.append('text')
+      .attr('id', 'score')
+      .attr('x', 10)
+      .attr('y', 30)
+      .attr('dy', '.5em')
+      .style('font-size', '24pt')
+      .style('pointer-events', 'none')
+      .text('Score: 0')
+      .attr('class', 'game game2')
+      .style('fill', 'green').style('display', 'none');
+
+    g.append('text')
+      .attr('id', 'time')
+      .attr('x', 10)
+      .attr('y', 80)
+      .attr('dy', '.5em')
+      .style('font-size', '24pt')
+      .style('pointer-events', 'none')
+      .text('Time: 20')
+      .attr('class', 'game game2')
+      .style('fill', 'black').style('display', 'none');
+
+    // Solution buttons
+    let xs = [15, 140, 265];
+    let ys = [300, 300, 300];
+    let ids = ['Hypotonic', 'Isotonic', 'Hypertonic']
+
+    for (var i = 0; i < xs.length; i++) {
+      let sol = ids[i];
+      g.append('rect')
+        .attr('width', 115)
+        .attr('height', 80)
+        .attr('x', xs[i])
+        .attr('y', ys[i])
+        .attr('class', 'game game3')
+        .attr('id', ids[i])
+        .style('rx', 5)
+        .style('ry', 5)
+        .style('disabled', 'disabled')
+        .style('cursor', 'pointer')
+        .attr('stroke', 'black')
+        .attr('fill', 'beige')
+        .style('display', 'none')
+        .on('click', function () { that.addSolution(sol); })
+
+      g.append('text')
+        .attr('x', xs[i] + 5)
+        .attr('y', ys[i] + 20)
+        .attr('dy', '.5em')
+        .style('font-size', '11pt')
+        .style('pointer-events', 'none')
+        .text('Add ' + ids[i])
+        .attr('class', 'game game2')
+        .style('fill', 'black').style('display', 'none');
+    }
 
     this.bits;
   }
@@ -270,6 +367,205 @@ class CustomD3Component extends D3Component {
     this.shootHyper();
   }
 
+  playGame() {
+    document.getElementById('redBloodCell').innerHTML = '';
+
+    let qsa = document.querySelectorAll('.game');
+
+    qsa.forEach(function (x) {
+      x.style.display = 'block';
+    });
+
+  }
+
+  startGame() {
+    if (this.state.gameStarted == true) {
+      return;
+    }
+
+    document.getElementById('score').innerHTML = 'Score: 0';
+
+    let qsa = document.querySelectorAll('.game');
+
+    qsa.forEach(function (x) {
+      x.style.display = 'none';
+    });
+
+    let qsa2 = document.querySelectorAll('.game2');
+
+    qsa2.forEach(function (x) {
+      x.style.display = 'block';
+    });
+
+    qsa2 = document.querySelectorAll('.game3');
+
+    qsa2.forEach(function (x) {
+      x.style.display = 'block';
+    });
+
+    const that = this;
+
+    let timerFunction = function () {
+      that.setState({
+        'time': that.state.time - 1
+      });
+      document.getElementById('time').innerHTML = 'Time: ' + that.state.time;
+      if (that.state.time <= 0) {
+        that.stopGame('You ran out of time!');
+      }
+    }
+
+    this.setState({
+      'gameStarted': true,
+      'time': 20,
+      'timeReset': 20,
+      'timerFunction': setInterval(timerFunction, 1000),
+      'gameScore': 0,
+      'lives': 3,
+      'state': 2
+    });
+    this.rotate(this.state.state);
+  }
+
+
+  addSolution(sol) {
+    if (!this.state.gameStarted) {
+      return;
+    }
+    console.log(sol);
+    console.log('STATE: ' + this.state.state);
+    switch (this.state.state) {
+      case 1: // Requires hypertonic, blood cell is too large
+        if (sol === 'Hypertonic') {
+          this.rotate();
+          console.log('GOOD');
+        }
+        else if (sol === 'Hypotonic') {
+          this.stopGame('The blood cell burst!');
+          console.log('FAIL');
+          this.blob.attr('rx', 0)
+            .attr('ry', 0);
+        }
+        break;
+      case 2: // Requires hypotonic, blood cell is too small
+        if (sol === 'Hypertonic') {
+          this.stopGame('The blood cell shriveled up!');
+
+          console.log('FAIL');
+          this.blob.attr('rx', 10)
+            .attr('ry', 5);
+        }
+        else if (sol === 'Hypotonic') {
+          this.rotate();
+          console.log('GOOD');
+        }
+        break;
+      case 3: // Requires isotonic, blood cell is normal sized
+        if (sol === 'Hypertonic') {
+          this.rotate(2);
+          console.log('Now need hypotonic');
+        }
+        else if (sol === 'Hypotonic') {
+          this.rotate(1);
+          console.log('Now need hypertonic')
+        }
+        else if (sol === 'Isotonic') {
+          this.rotate();
+          console.log('GOOD')
+        }
+        break;
+    }
+  }
+
+  // Change the cell to large / small / medium
+  rotate(n) {
+    let current = this.state.state;
+
+    let arr = [1, 2, 3];
+    let ind = arr.indexOf(this.state.state);
+
+    arr.splice(ind, 1);
+
+    var nx = n;
+
+    if (n === undefined) {
+
+      let time = 20 - this.state.gameScore;
+      let mintime = 8;
+      if (this.state.gameScore > 30) {
+        mintime = 7;
+      }
+      if (this.state.gameScore > 40) {
+        mintime = 6;
+      }
+      if (this.state.gameScore > 50) {
+        mintime = 5;
+      }
+      if (time < mintime) {
+        time = mintime;
+      }
+
+      nx = arr[Math.floor(Math.random() * 2)];
+
+      this.setState({
+        'state': nx,
+        'gameScore': this.state.gameScore + 1,
+        'time': time
+      });
+      document.getElementById('time').innerHTML = 'Time: ' + this.state.time;
+      document.getElementById('score').innerHTML = 'Score: ' + this.state.gameScore;
+    } else {
+      this.setState({
+        'state': n
+      });
+      nx = n;
+    }
+    switch (nx) {
+      case 1: // Requires hypertonic
+        document.getElementById('redBloodCell').innerHTML = '&nbsp;&nbsp;Too large';
+        this.blob.attr('rx', 140)
+          .attr('ry', 100);
+        break;
+      case 2: // Requires hypotonic
+        document.getElementById('redBloodCell').innerHTML = '&nbsp;&nbsp;Too small';
+        this.blob.attr('rx', 55)
+          .attr('ry', 20);
+        break;
+      case 3: // Requires isotonic
+        document.getElementById('redBloodCell').innerHTML = '&nbsp;&nbsp;Just right';
+        this.blob.attr('rx', 80)
+          .attr('ry', 60);
+        break;
+    }
+  }
+
+  stopGame(message) {
+    if (!message) {
+      message = 'Game over!';
+    }
+
+    clearInterval(this.state.timerFunction);
+
+    this.setState({
+      'gameStarted': false,
+      'time': 20,
+      'timeReset': 20,
+      'timerFunction': null,
+      'gameScore': 0,
+      'lives': 3,
+      'state': 2
+    });
+    let qsa = document.querySelectorAll('.game1');
+    document.getElementById('time').innerHTML = message;
+    document.getElementById('startButton').innerHTML = 'Play Again';
+
+    this.playGame();
+
+    qsa.forEach(function (x) {
+      x.style.display = 'block';
+    });
+  }
+
   stopAnimation() {
     this.svg.selectAll('circle').remove();
     clearInterval(this.shoot);
@@ -282,10 +578,23 @@ class CustomD3Component extends D3Component {
   // Hypotonic: entering circle
   // Hypertonic: leaving circle
   update(props) {
-    if (props.value == 3) {
+    if (props.value == 3 || this.state.gameStarted == true) {
       // this is because for some reason it's setting the visualization to disappear when in between 2 different sections
       // 
       return;
+    }
+    if (props.value != 5) {
+      document.getElementById('redBloodCell').innerHTML = 'Red Blood Cell';
+      let qsa = document.querySelectorAll('.game');
+
+      qsa.forEach(function (x) {
+        x.style.display = 'none';
+      });
+    }
+    if (props.value == 6) { // Quiz: hide the thing
+      this.svg.style('visibility', 'hidden');
+    } else {
+      this.svg.style('visibility', 'visible');
     }
 
     this.setState({ animation: props.value });
@@ -319,6 +628,14 @@ class CustomD3Component extends D3Component {
       this.setExtracellularText('Extracellular Fluid');
       this.setArrowsBackground('none.png');
       this.stopAnimation();
+    }
+
+    // Game view
+    if (props.value == 5) {
+      this.setExtracellularText('');
+      this.setArrowsBackground('none.png');
+      this.stopAnimation();
+      this.playGame();
     }
 
 
