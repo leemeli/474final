@@ -59,7 +59,7 @@ An isotonic solution is commonly used in nursing to **increase extracellular flu
 
 [section]
 
-[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=6` onExitView:`animation=3`]
 #Content Review
 ##Question 1
 
@@ -72,7 +72,7 @@ When the osmolarity outside of the cell is lower than in the cell, the extracell
 
 [/Waypoint]
 
-[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=6` onExitView:`animation=3`]
 
 ##Question 2
 
@@ -85,7 +85,7 @@ When the osmolarity outside of the cell is equal to inside the cell, the extrace
 
 [/Waypoint]
 
-[Waypoint onEnterViewFully:`animation=4` onExitView:`animation=3`]
+[Waypoint onEnterViewFully:`animation=6` onExitView:`animation=3`]
 
 ##Question 3
 

@@ -532,7 +532,7 @@ class CustomD3Component extends D3Component {
           .attr('ry', 20);
         break;
       case 3: // Requires isotonic
-        document.getElementById('redBloodCell').innerHTML = '&nbsp;&nbsp;Just right';
+        document.getElementById('redBloodCell').innerHTML = '&nbsp;&nbsp;Normal size';
         this.blob.attr('rx', 80)
           .attr('ry', 60);
         break;
